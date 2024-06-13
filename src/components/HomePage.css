@@ -1,3 +1,5 @@
+/* src/components/HomePage.css */
+
 .homepage {
   display: flex;
   height: 100vh;
@@ -6,8 +8,22 @@
 
 .left-section {
   flex: 1;
-  background: url("../assets/blackandwhite1.png") no-repeat center center;
+  position: relative;
+  background: url("../assets/blackandwhite1A.png") no-repeat center top; /* Adjusted */
   background-size: cover;
+  padding-top: 60px; /* Adjust this value to match your header height */
+  overflow: hidden; /* Ensures pseudo-element doesn't affect layout */
+}
+
+.left-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 55%; /* This leaves 15% for the gradient fade */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, black 100%);
+  z-index: 1;
 }
 
 .right-section {
@@ -17,15 +33,17 @@
   align-items: center;
   justify-content: center;
   color: white;
-  padding: 20px;
+  padding: 5px;
 }
 
-.logo img {
-  height: 100px; /* Adjust as needed */
+.homepage-logo img {
+  height: 500px; /* Adjust as needed for the homepage */
 }
 
 .sign-in {
   margin-top: 20px;
+  position: relative;
+  z-index: 2; /* Ensure the form appears above the gradient */
 }
 
 @media (max-width: 768px) {
