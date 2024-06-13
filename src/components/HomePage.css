@@ -1,0 +1,41 @@
+.homepage {
+  display: flex;
+  height: 100vh;
+  background-color: black;
+}
+
+.left-section {
+  flex: 1;
+  background: url("../assets/blackandwhite1.png") no-repeat center center;
+  background-size: cover;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 20px;
+}
+
+.logo img {
+  height: 100px; /* Adjust as needed */
+}
+
+.sign-in {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .homepage {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    flex: none;
+    height: 50vh;
+  }
+}

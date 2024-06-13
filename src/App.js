@@ -1,12 +1,12 @@
 import React from "react"
 import Header from "./components/Header"
-import Users from "./components/Users"
+import HomePage from "./components/HomePage"
 
 const App = () => {
   return (
     <div className="App">
       <Header />
-      {/* <Users /> */}
+      <HomePage />
     </div>
   )
 }
