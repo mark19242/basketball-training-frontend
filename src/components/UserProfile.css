@@ -1,21 +1,21 @@
-/* src/components/HomePage.css */
+/* src/components/UserProfile.css */
 
-.homepage {
+.profile-page-container {
   display: flex;
   height: 100vh;
   background-color: black;
 }
 
-.left-section {
+.profile-left-section {
   flex: 1;
   position: relative;
-  background: url("../assets/blackandwhite1A.png") no-repeat center top;
+  background: url("../assets/profile-image.png") no-repeat center top;
   background-size: cover;
   padding-top: 60px;
   overflow: hidden;
 }
 
-.left-section::after {
+.profile-left-section::after {
   content: "";
   position: absolute;
   top: 0;
@@ -26,7 +26,7 @@
   z-index: 1;
 }
 
-.right-section {
+.profile-right-section {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -37,21 +37,17 @@
   position: relative;
 }
 
-.homepage-logo {
+.profile-logo {
   position: absolute;
   top: 20px;
 }
 
-.homepage-logo img {
-  height: 280px;
+.profile-logo img {
+  height: 320px;
   width: auto;
 }
 
-.welcome-message {
-  text-align: center;
-}
-
-.btn {
+.user-profile .btn {
   display: inline-block;
   margin: 10px;
   padding: 10px 20px;
@@ -61,17 +57,17 @@
   border-radius: 5px;
 }
 
-.btn:hover {
+.user-profile .btn:hover {
   background-color: #d09e44;
 }
 
 @media (max-width: 768px) {
-  .homepage {
+  .profile-page-container {
     flex-direction: column;
   }
 
-  .left-section,
-  .right-section {
+  .profile-left-section,
+  .profile-right-section {
     flex: none;
     height: 50vh;
   }
