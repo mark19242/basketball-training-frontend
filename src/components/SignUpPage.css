@@ -1,0 +1,86 @@
+/* src/components/SignUpPage.css */
+
+.signup-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.signup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 400px;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.signup-logo {
+  margin-bottom: 20px;
+}
+
+.signup-logo img {
+  height: 100px;
+  width: auto;
+}
+
+.sign-up-form {
+  width: 100%;
+}
+
+.sign-up-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #222;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-control::placeholder {
+  color: #fff;
+}
+
+.form-control:focus {
+  border-color: #d09e44;
+  outline: none;
+  box-shadow: 0 0 5px rgba(119, 119, 119, 0.5);
+  background-color: #333;
+}
+
+.btn {
+  width: 100%; /* Ensures the button takes the full width of the container */
+  padding: 10px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: block; /* Ensures the button behaves as a block-level element */
+  margin: 0; /* Removes default margins */
+}
+
+.btn:hover {
+  background-color: #d09e44;
+}
+
+@media (max-width: 768px) {
+  .signup-content {
+    width: 100%;
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}
