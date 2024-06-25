@@ -7,36 +7,36 @@ import Calendar from "react-calendar"
 import "react-calendar/dist/Calendar.css"
 
 const TrainingSchedule = () => {
-  const [availableSlots, setAvailableSlots] = useState([])
+  const [availableSessions, setAvailableSessions] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date())
 
   useEffect(() => {
-    const fetchSlots = async () => {
+    const fetchSessions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/available_slots?date=${
+          `http://localhost:3000/training_sessions?date=${
             selectedDate.toISOString().split("T")[0]
           }`
         )
-        setAvailableSlots(response.data)
+        setAvailableSessions(response.data)
       } catch (error) {
         console.error(error)
       }
     }
-    fetchSlots()
+    fetchSessions()
   }, [selectedDate])
 
   const handleDateChange = (date) => {
     setSelectedDate(date)
   }
 
-  const handleBooking = async (slotId) => {
+  const handleBooking = async (sessionId) => {
     try {
       const response = await axios.post("http://localhost:3000/bookings", {
-        booking: { slot_id: slotId, date: selectedDate },
+        booking: { training_session_id: sessionId, user_id: 1 }, // Replace with actual user ID
       })
       console.log(response.data)
-      // You can add more logic here, such as showing a success message or updating the UI
+      // Update the UI or show a success message
     } catch (error) {
       console.error(error)
     }
@@ -53,12 +53,12 @@ const TrainingSchedule = () => {
           <Calendar onChange={handleDateChange} value={selectedDate} />
           <div className="slots">
             <h3>Available Time Slots</h3>
-            {availableSlots.length > 0 ? (
-              availableSlots.map((slot) => (
-                <div key={slot.id} className="slot">
-                  <p>{slot.time}</p>
+            {availableSessions.length > 0 ? (
+              availableSessions.map((session) => (
+                <div key={session.id} className="slot">
+                  <p>{session.time}</p>
                   <button
-                    onClick={() => handleBooking(slot.id)}
+                    onClick={() => handleBooking(session.id)}
                     className="btn"
                   >
                     Book
