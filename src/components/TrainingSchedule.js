@@ -1,8 +1,8 @@
 // src/components/TrainingSchedule.js
 import React, { useState, useEffect } from "react"
+import axiosInstance from "../axiosInstance"
 import "./TrainingSchedule.css"
 import logo from "../assets/logo.png"
-import axios from "axios"
 import Calendar from "react-calendar"
 import "react-calendar/dist/Calendar.css"
 
@@ -13,10 +13,8 @@ const TrainingSchedule = () => {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/training_sessions?date=${
-            selectedDate.toISOString().split("T")[0]
-          }`
+        const response = await axiosInstance.get(
+          `/training_sessions?date=${selectedDate.toISOString().split("T")[0]}`
         )
         setAvailableSessions(response.data)
       } catch (error) {
@@ -32,7 +30,7 @@ const TrainingSchedule = () => {
 
   const handleBooking = async (sessionId) => {
     try {
-      const response = await axios.post("http://localhost:3000/bookings", {
+      const response = await axiosInstance.post("/bookings", {
         booking: { training_session_id: sessionId, user_id: 1 }, // Replace with actual user ID
       })
       console.log(response.data)

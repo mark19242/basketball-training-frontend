@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react"
 import "./UserProfile.css"
 import logo from "../assets/logo.png"
-import axios from "axios"
+import axiosInstance from "../axiosInstance"
 
 const UserProfile = () => {
   const [user, setUser] = useState(null)
@@ -10,7 +10,9 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/profile")
+        const response = await axiosInstance.get(
+          "http://localhost:3000/profile"
+        )
         setUser(response.data)
       } catch (error) {
         console.error(error)

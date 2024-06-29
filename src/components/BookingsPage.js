@@ -1,6 +1,6 @@
 // src/components/BookingsPage.js
 import React, { useState, useEffect } from "react"
-import axios from "axios"
+import axiosInstance from "../axiosInstance"
 import "./BookingsPage.css"
 
 const BookingsPage = ({ userId }) => {
@@ -9,9 +9,7 @@ const BookingsPage = ({ userId }) => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/bookings?user_id=${userId}`
-        )
+        const response = await axiosInstance.get(`/bookings?user_id=${userId}`)
         setBookings(response.data)
       } catch (error) {
         console.error("Error fetching bookings:", error)
@@ -23,7 +21,7 @@ const BookingsPage = ({ userId }) => {
 
   const handleCancel = async (bookingId) => {
     try {
-      await axios.delete(`http://localhost:3000/bookings/${bookingId}`)
+      await axiosInstance.delete(`/bookings/${bookingId}`)
       setBookings(bookings.filter((booking) => booking.id !== bookingId))
     } catch (error) {
       console.error("Error canceling booking:", error)

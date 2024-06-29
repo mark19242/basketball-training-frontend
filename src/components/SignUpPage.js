@@ -1,33 +1,30 @@
 // src/components/SignUpPage.js
 import React, { useState } from "react"
+import axios from "axios"
 import "./SignUpPage.css"
 import logo from "../assets/logo.png"
-import axios from "axios"
 
 const SignUpPage = () => {
-  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
-  const [confirmEmail, setConfirmEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [name, setName] = useState("")
 
   const handleSignUp = async (e) => {
     e.preventDefault()
-    if (email !== confirmEmail) {
-      alert("Emails do not match!")
-      return
-    }
     if (password !== confirmPassword) {
       alert("Passwords do not match!")
       return
     }
     try {
       const response = await axios.post("http://localhost:3000/users", {
-        user: { username, email, password },
+        user: { name, email, password, password_confirmation: confirmPassword },
       })
       console.log(response.data)
+      // Handle successful sign-up, e.g., redirect or show a success message
     } catch (error) {
-      console.error(error)
+      console.error("Error response:", error.response)
+      console.error("Error message:", error.message)
     }
   }
 
@@ -42,9 +39,9 @@ const SignUpPage = () => {
           <form onSubmit={handleSignUp}>
             <input
               type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="form-control"
               required
             />
@@ -53,14 +50,6 @@ const SignUpPage = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              required
-            />
-            <input
-              type="email"
-              placeholder="Confirm Email"
-              value={confirmEmail}
-              onChange={(e) => setConfirmEmail(e.target.value)}
               className="form-control"
               required
             />

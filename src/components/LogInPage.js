@@ -1,24 +1,24 @@
-// src/components/LoginPage.js
+// src/components/LogInPage.js
 import React, { useState } from "react"
+import axios from "axios"
 import "./LogInPage.css"
 import logo from "../assets/logo.png"
-import axios from "axios"
 
-const LoginPage = () => {
+const LogInPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = async (e) => {
+  const handleLogIn = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("http://localhost:3000/users/sign_in", {
         user: { email, password },
       })
       console.log(response.data)
-      // Handle successful login, e.g., redirect or store user data
+      // Handle successful log-in, e.g., redirect or store user data
     } catch (error) {
-      console.error(error)
-      // Handle login error, e.g., show error message
+      console.error("Error response:", error.response)
+      console.error("Error message:", error.message)
     }
   }
 
@@ -28,9 +28,9 @@ const LoginPage = () => {
         <div className="login-logo">
           <img src={logo} alt="Logo" />
         </div>
-        <div className="login-form">
+        <div className="log-in-form">
           <h2>Log In</h2>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleLogIn}>
             <input
               type="email"
               placeholder="Email"
@@ -57,4 +57,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default LogInPage
